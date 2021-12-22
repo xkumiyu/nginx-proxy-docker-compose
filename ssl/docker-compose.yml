@@ -10,9 +10,12 @@ services:
     volumes:
       - certs:/etc/nginx/certs:ro
       - conf:/etc/nginx/conf.d
+      - dhparam:/etc/nginx/dhparam
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      HTTPS_METHOD: redirect
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
 
@@ -22,6 +25,7 @@ services:
     depends_on:
       - nginx-proxy
     volumes:
+      - acme:/etc/acme.sh
       - certs:/etc/nginx/certs:rw
       - conf:/etc/nginx/conf.d
       - html:/usr/share/nginx/html
@@ -38,7 +42,9 @@ services:
       LETSENCRYPT_HOST: $HOST
 
 volumes:
+  acme:
   certs:
   conf:
+  dhparam:
   html:
   vhost:

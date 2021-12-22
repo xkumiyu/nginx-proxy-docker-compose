@@ -47,12 +47,12 @@ curl -H Host:whoami.local -u user:pass localhost
 
 ## SSL using ACME CA
 
-Requirements
+Requirements the following:
 
 - allow access to port 80 from internet
   - required for HTTP authentication when issuing certificates
 - own a domain
-  - if you have a global IP, you can use [sslip.io](https://sslip.io/).
+  - if you do not own the domain, you can use [sslip.io](https://sslip.io/).
 
 ```sh
 cd ssl
